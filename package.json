@@ -1,0 +1,21 @@
+{
+  "name": "adopt-pet-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Telegram alerts for newly listed Golden Retrievers and Bernese Mountain Dogs on Verhuisdieren",
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "start": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/index.ts",
+    "dry-run": "DRY_RUN=1 npm start",
+    "chat-id": "node --experimental-strip-types --disable-warning=ExperimentalWarning src/get-chat-id.ts",
+    "typecheck": "tsc",
+    "test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --test src/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.9.0"
+  }
+}

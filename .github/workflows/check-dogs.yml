@@ -1,0 +1,49 @@
+name: Check for new dogs
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # every 5 minutes (GitHub may delay scheduled runs under load)
+  workflow_dispatch: {}
+
+# Allows the job to commit the updated state file back to the repo.
+permissions:
+  contents: write
+
+# Never run two checks at once: they could both alert on the same dog.
+concurrency:
+  group: check-dogs
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+
+      # No `npm install` needed: the bot has zero runtime dependencies and
+      # Node 24 runs TypeScript directly.
+      - name: Check Verhuisdieren
+        run: npm start
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+      # Runs even if the check step failed, so alerts that *were* sent are recorded.
+      - name: Save seen dogs
+        if: always()
+        run: |
+          git add state/
+          if git diff --cached --quiet; then
+            echo "State unchanged."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update seen dogs"
+          git pull --rebase
+          git push
