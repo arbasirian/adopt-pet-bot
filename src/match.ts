@@ -9,6 +9,7 @@
 const BREED_PATTERNS = [
   'goldenretriever', // Golden Retriever
   'bernersenn', // Berner Sennen, Berner Sennenhond, Bernersenner
+  'bennersenn', // "Benner Sennen", a typo seen in a real listing
   'bernesemountaindog', // Bernese Mountain Dog
 ];
 

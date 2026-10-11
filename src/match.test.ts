@@ -13,6 +13,7 @@ test('matches wanted breeds, crosses and spelling variants', () => {
     'Berner Sennen Hond',
     'Bernersennen',
     'Mechelaar x bernersenner',
+    'Benner Sennen',
     'Bernese Mountain Dog',
     'BERNESE MOUNTAIN DOG cross',
   ]) {
@@ -26,6 +27,7 @@ test('does not match other breeds or generic "golden"', () => {
     'Golden doodle',
     'Kruising Labradoodle & Goldendoodle',
     'Entlebucher Sennenhond',
+    'Grote Zwitserse Senne hond',
     'Zwitserse sennen x Australian Shepherd X Labrador',
     'Labrador',
     '',

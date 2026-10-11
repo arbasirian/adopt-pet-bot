@@ -56,6 +56,7 @@ matches if the result contains any of:
 | -------------------- | ------------------------------------------------------------------- |
 | `goldenretriever`    | Golden Retriever, Golden Retriever Mix, Labrador/ golden retriever  |
 | `bernersenn`         | Berner Sennen, Berner Sennen Hond, Bernersennen, Mechelaar x bernersenner |
+| `bennersenn`         | Benner Sennen (a typo in a real listing)                            |
 | `bernesemountaindog` | Bernese Mountain Dog                                                |
 
 These spellings come from real listings. There is no bare `golden` pattern, so Goldendoodle,
